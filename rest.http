@@ -6,8 +6,8 @@ POST http://localhost:3000/products
 Content-Type: application/json
 
 {
-  "name": "iMac Pro",
-  "price": 1799
+  "name": "iMac Pro 2020",
+  "price": 2099
 }
 
 ### Get a product by id
@@ -22,10 +22,13 @@ Content-Type: application/json
 }
 
 ### Delete a product by id
-DELETE http://localhost:3000/products/60f42b7731e89f2d218ff3d
+DELETE http://localhost:3000/products/60f42abd2a913a2c8bfd8adc
 
 ### Home route
 GET http://localhost:3000/
+
+### 404 Test
+GET http://localhost:3000/abc
 
 ### Test
 POST http://localhost:3000/test

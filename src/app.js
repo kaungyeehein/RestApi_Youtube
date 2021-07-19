@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const createError = require('http-errors');
 const ProductRouter = require('./Routes/Product.route');
 
 const app = express();
@@ -15,9 +16,7 @@ app.use('/products', ProductRouter);
 
 // Default 404 error for other routes
 app.use((req, res, next) => {
-  const err = new Error('Not found');
-  err.status = 404;
-  next(err);
+  next(createError(404, 'Not found'));
 });
 
 // Default error handler
@@ -40,7 +39,9 @@ mongoose.connect('mongodb://localhost:27017/', {
   useUnifiedTopology: true,
   useFindAndModify: false
 }).then(() => {
-  console.log('Mongodb connected...');
+  console.log('Mongodb: connected...');
+}).catch(err => {
+  console.log('Mongodb: ' + err.message);
 });
 
 module.exports = app;
