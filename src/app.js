@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const createError = require('http-errors');
+const dotenv = require('dotenv').config();
 const ProductRouter = require('./Routes/Product.route');
 
 const app = express();
@@ -33,8 +34,10 @@ app.use((err, req, res, next) => {
 // dbName: 'RestAPI'
 // user: 'admin'
 // pass: 'admin'
-mongoose.connect('mongodb://localhost:27017/', {
-  dbName: 'RestAPI',
+mongoose.connect(process.env.MONGODB_URL, {
+  dbName: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  pass: process.env.DB_PASS,
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
